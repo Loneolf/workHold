@@ -1,0 +1,172 @@
+/*
+*alert界面和prompt界面
+*/
+.window_mask{position: absolute;left: 0px;top: 0px;background-color: rgb(0, 0, 0);opacity: 0.7;z-index: 1000;filter:alpha(opacity=70);width: 100%;height: 100%;}
+.window_boundingBox{z-index: 10001;width: 90%;position: absolute;left: 5%;background-color: rgb(212, 212, 212);border-radius: 3px;overflow: hidden;}
+.window_boundingBox .window_header {text-align: center;font-size: 24px;color: #303030;padding: .3rem 0 .3rem;border-bottom: 1px solid #b4b4b4;}
+.window_boundingBox .window_body {/* line-height: 22px; */font-size: .9rem;padding: .8rem 5%;color: #000}
+.window_boundingBox .window_footer {padding: 0 10% 30px;text-align: center;font-size: 0;-webkit-text-size-adjust:none;
+}
+.window_boundingBox .window_footer .window_ConfrimBtn, .window_boundingBox .window_footer .window_CancelBtn {
+    display: inline-block;
+    width: 45%;
+    font-size: .9rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    background: #d64113;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    margin-right: 8%;
+}
+.window_boundingBox .window_footer .window_CancelBtn{
+    margin: 0;background: #e6e6e6;color: #303030;
+}
+.window_boundingBox .window_footer .window_alertBtn{display: inline-block;width: 45%;background: #d64113;
+    font-size: 15px;
+    height: 35px;
+    line-height: 35px;text-align: center;
+    border-radius: 3px;color: #fff;}
+/*
+*自定义弹出框
+*/
+.window_custon{
+    z-index: 1001;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    background-color: rgb(240, 240, 240);
+}
+.window_custon .jtitle {
+    padding: 18px 20px;
+    position: relative;
+}
+.jtitle .stockLeft {
+    font-size: 21px;
+    line-height: 21px;
+}
+.jtitle .stockRight {
+    color: #0a81dd;
+    font-size: 15px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.window_custon .jcontent {
+    padding: 12px 20px;
+}
+.jcontent .usable {
+    width: 100%;
+    height: 49px;
+    background: #fff;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    padding: 10px 0;
+    font-size: 0;
+}
+.usable .minus, .usable .print, .usable .add {
+    font-size: 16px;
+    height: 29px;
+    line-height: 29px;
+    vertical-align: top;
+    position: relative;
+}
+.usable .minus {
+    text-align: right;
+    padding-right: 20px;
+}
+.usable .print {
+    border: none;
+    text-align: center;
+    background-color: transparent;
+}
+.usable .add {
+    padding-left: 20px;
+}
+.jcontent .explain {
+    color: #9f9f9f;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+}
+.jcontent .pledge {
+    padding: 15px 0;
+    font-size: 12px;
+    line-height: 12px;
+}
+.predict .redfont {
+    font-size: 14px;
+    color: #e01010;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.predict .predictright {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.itemdepicts {
+    padding-top: 7px;
+}
+.itemdepict {
+    color: #989898;
+    font-size: 12px;
+}
+.window_custon .window_closeBtn {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: -60px;
+    right: 8px;
+    background: #f6f6f6;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    text-align: center;
+    line-height: 50px;
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.7660444431189777, M12=-0.6427876096865394, M21=0.6427876096865398, M22=0.7660444431189779);
+}
+.window_closeBtn .Lline, .window_closeBtn .Rline {
+    width: 19px;
+    height: 2px;
+    display: inline-block;
+    background: #b3b3b3;
+    position: absolute;
+    left: 16px;
+    top: 24px;
+}
+.window_closeBtn .Rline {
+    height: 19px;
+    width: 2px;
+    position: absolute;
+    left: 24px;
+    top: 15px;
+}
+.minus .heng {
+    width: 17px;
+    height: 5px;
+    background: #d64113;
+    display: inline-block;
+}
+.add .addLeft, .add .addRight {
+    position: absolute;
+    width: 17px;
+    height: 5px;
+    left: 20px;
+    top: 12px;
+    display: inline-block;
+    background: #1182c1;
+}
+.add .addRight {
+    height: 17px;
+    width: 5px;
+    top: 6px;
+    left: 26px;
+}
+.greyadd .addLeft, .greyadd .addRight, .greyadd .heng {
+    background: #d2d2d2;
+}

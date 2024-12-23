@@ -1,0 +1,193 @@
+/**
+* Created by 中焯（Kite) on 2018/05/07.
+**/
+.tzt-chart {
+	position: relative;
+}
+
+.tzt-chart svg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 5;
+}
+
+.tzt-chart line {
+	shape-rendering: crispEdges;
+}
+
+.tzt-chart path {
+	fill: none;
+}
+
+/* ---------- 字体大小 ----------*/
+.tzt-chart .size-15 {
+	font-size: 15px;
+}
+
+.tzt-chart .size-21 {
+	/*font-size: 21px;*/
+	font-size: .5rem;
+}
+.tzt-chart .size-24 {
+	/*font-size: 24px;*/
+	font-size: .32rem;
+}
+
+.tzt-chart .size-30 {
+	/*font-size: 30px;*/
+	font-size: .4rem;
+}
+
+.tzt-chart .font-bold {
+	font-weight: 700;
+}
+
+/*文本水平居中*/
+.tzt-chart .text-centre {
+	text-anchor: middle;
+}
+
+/*文本垂直居中*/
+.tzt-chart .text-middle {
+	dominant-baseline: middle;
+}
+
+/* ---------- 字体颜色 ----------*/
+/*白色字体*/
+.tzt-chart .color-white {
+	fill: #fff;
+}
+
+/*灰色字体*/
+.tzt-chart .color-gray {
+	fill: #999;
+}
+
+/*红色字体*/
+.tzt-chart .color-red {
+	fill: #ff4045;
+}
+
+/*绿色字体*/
+.tzt-chart .color-green {
+	fill: #01bd78;
+}
+
+/*x轴y轴虚线*/
+.tzt-chart .tick .axis-line{
+	stroke-width: .02rem;
+	stroke: rgb(90, 82, 82);
+	stroke-dasharray: 3;
+	fill: none;
+}
+.tzt-chart .tick text{
+	margin-left:-50px;
+}
+/*x轴y轴轴线*/
+.tzt-chart .tzt-axis-bar-x-side,
+.tzt-chart .tzt-axis-bar-y-side,
+.tzt-chart .tzt-axis-line-x-side,
+.tzt-chart .tzt-axis-line-y-side,
+.tzt-chart .axis-side-x,
+.tzt-chart .axis-side-y{
+	stroke: #888181;/*#E5E5E5*/
+	stroke-width: .02rem;
+}
+
+/*提示线条*/
+.tzt-chart .tips-line {
+	stroke: #333;
+	stroke-width: .02rem;
+	stroke-dasharray:0;
+}
+
+/*提示背景*/
+.tzt-chart .tips-border {
+	fill: #409effb3;
+}
+.tzt-chart .bar-tips-area {
+	fill: #409effb3;
+}
+
+/*K线红色线条-细线*/
+.tzt-chart .kline-line-rise {
+	stroke: #ff4045;
+	stroke-width: 1px;
+}
+
+/*K线绿色线条-细线*/
+.tzt-chart .kline-line-drop {
+	stroke: #01bd78;
+	stroke-width: 1px;
+}
+
+/*K线红色柱形图*/
+.tzt-chart .kline-bar-rise {
+	fill: #ff4045;
+}
+
+/*K线绿色柱形图*/
+.tzt-chart .kline-bar-drop {
+	fill: #01bd78;
+}
+
+/*K线多空橙色字体*/
+.tzt-chart .color-buy {
+	fill: #ff9519;
+}
+
+/*K线多空绿色字体*/
+.tzt-chart .color-sell {
+	fill: #02a88f;
+}
+
+/*K线多空橙色虚线*/
+.tzt-chart .line-buy {
+	stroke: #ff9519;
+	stroke-dasharray: 2 1;
+	stroke-width: 1px;
+}
+
+/*K线多空绿色虚线*/
+.tzt-chart .line-sell {
+	stroke: #02a88f;
+	stroke-dasharray: 2 1;
+	stroke-width: 1px;
+}
+
+/*K线多空橙色区域*/
+.tzt-chart .triangle-buy {
+	fill: rgba(255,149,25,.3);
+}
+
+/*K线多空绿色区域*/
+.tzt-chart .triangle-sell {
+	fill: rgba(2,168,143,.3);
+}
+
+/*柱形图红色*/
+.tzt-chart .bar-rise {
+	fill: #ff4045;
+	stroke-width: 1px;
+}
+
+/*柱形图绿色*/
+.tzt-chart .bar-drop {
+	fill: #01bd78;
+	stroke-width: 1px;
+}
+
+/*边框颜色*/
+.tzt-chart-borderColor{
+	stroke:#e5e5e5;
+}
+
+.tzt-chart .tzt-none{width:100%; margin-top:-.4rem; font-size:.8rem; line-height:.8rem; text-align:center; color:#999; position:absolute; top:50%; left:0;}
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+如何调试vue 
+下载vue-devtools-master 地址：https://github.com/vuejs/vue-devtools
+然后在当前文件里打开cmd命令输入：
+npm install 等所有包都安装好了之后
+npm run build 生成文件
+在chrome浏览器里 更多工具－扩展程序－开启开发者模式－加载已解压的扩展程序（选择对应的文件夹）－ shells/chrome
+在浏览器控制台里就可以看到多了一个Vue的菜单
+
+
+本地端口和代理服务器地址：config／index.js
+

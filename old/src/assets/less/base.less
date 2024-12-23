@@ -1,0 +1,145 @@
+//
+// Base styles
+// --------------------------------------------------
+
+// Use box sizing on all the things!
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout:none;
+}
+
+// We fix position the body and scroll `.content`.
+body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-family: @font-family-default;
+  font-size: @font-size-default;
+  line-height: 1.5;
+  color: @color-text;
+  z-index:1;
+  /*background: @color-bg;*/
+  overflow: hidden;
+}
+
+a, input, textarea, select, button {
+    outline: 0;
+    -webkit-appearance : none ;
+}
+
+/* 覆盖泛黄的背景 */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+p {
+    //margin: 1em 0;
+}
+
+// Universal link styling
+a {
+  color: @color-link;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0); // Removes the dark touch outlines on links in webkit browsers.
+
+  &:active {
+    color: @color-link-active;
+  }
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /*background: @color-bg;*/
+  z-index: 2000;
+}
+
+// Wrapper to be used around all content not in .bar-title and .bar-tab
+.content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 1;
+}
+.contentNew {
+  overflow-y: scroll;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+// Hack to force all relatively and absolutely positioned elements still render while scrolling
+// Note: This is a bug for "-webkit-overflow-scrolling: touch"
+.content > * {
+  //transform: translateZ(0); //这一行会导致三星 S4 android 4.2 无法滚动
+}
+
+// Pad top/bottom of content so it doesn't hide behind bars.
+// Note: For these to work, content must come after both bars in the markup
+.bar-nav ~ .content{
+  top: @bar-base-height;
+}
+.date-wrap ~ .content {
+  top: @date-base-height;
+}
+.bar-nav ~ .date-wrap ~ .content {
+  top: @bar-date-base-height;
+}
+.bar-header-secondary ~ .content {
+  top: (@bar-base-height*2);
+}
+
+// Footer bar margin
+.bar-footer ~ .content {
+  bottom: @bar-base-height;
+}
+.bar-footer-secondary ~ .content {
+  bottom: (@bar-base-height*2);
+}
+
+// Tab bar margin
+.bar-tab ~ .content {
+  bottom: @bar-tab-height;
+}
+.bar-footer-secondary-tab ~ .content {
+  bottom: (@bar-tab-height+@bar-base-height);
+}
+
+// Utility classes
+.content-padded {
+  margin: @bar-side-spacing;
+}
+.text-center {
+  text-align: center;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.clearfix {
+  .clearfix();
+}
+body.no-iscroll{
+  position:initial;
+  overflow: initial;
+  .page.page-current, .page-group.page-current,.page, .page-group,.content{
+    position:initial;
+    overflow: initial;
+  }
+}
