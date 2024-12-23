@@ -1,28 +1,28 @@
-import VueRouter from 'vue-router'
-import Vue from 'vue'
+import VueRouter from "vue-router";
+import Vue from "vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 const router = new VueRouter({
-    mode: 'history',
-    routes: [
-        {
-            path: '/',
-            component: () => import('../page/Home')
-        },
-        {
-            path: '/home',
-            component: () => import('../page/Home')
-        },
-        {
-            path: '/about',
-            component: () => import('../page/About')
-        },
-        {
-            path: '/jkf10',
-            component: () => import('../page/jkf10')
-        },
-    ]
-})
+	mode: "history",
+	routes: [
+		{
+			path: "/",
+			component: () => import("../page/Home"),
+		},
+		{
+			path: "/home",
+			component: () => import("../page/Home"),
+		},
+		{
+			path: "/about",
+			component: () => import("../page/About"),
+		},
+		{
+			path: "/hq",
+			component: () => import("../page/hq"),
+		},
+	],
+});
 
 // router.beforeEach((to, from, next)=> {
 //     console.log('aaarouter', to, from)
@@ -33,4 +33,4 @@ const router = new VueRouter({
 //     }
 // })
 
-export default router
+export default router;
