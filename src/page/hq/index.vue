@@ -10,35 +10,33 @@
 				{{ item }}
 			</div>
 		</div>
-		<swiper ref="swiper" direction="horizontal" :speed="250">
-			<div
-				class="swiper-slide swiper-no-swiping"
-				v-for="(item, idx) in headTabs"
-				:key="item"
-			>
-				<!-- 持仓 -->
-				<div v-if="idx == '0'">
-					<templatechicang
-						url="ptjy/chicang2"
-						ref="chicangnew"
-						:action="action"
-						:viewname="viewname"
-					></templatechicang>
-				</div>
-				<!-- 当日委托 -->
-				<!-- <div v-if="idx == '1'">
-					<drweituo ref="drweituo"></drweituo>
-				</div> -->
-				<!-- 当日成交 -->
-				<!-- <div v-if="idx == '2'">
-					<drchengjiao ref="drchengjiao"></drchengjiao>
-				</div> -->
-				<!--自选 -->
-				<!-- <div v-if="idx == '3'">
-					<zixuan :action="action" ref="zixuanNew"></zixuan>
-				</div> -->
-			</div>
-		</swiper>
+        <div
+            class="swiper-slide swiper-no-swiping"
+            v-for="(item, idx) in headTabs"
+            :key="item"
+        >
+            <!-- 持仓 -->
+            <div v-if="idx == '0'">
+                <templatechicang
+                    ref="chicangnew"
+                    :viewname="viewname"
+                ></templatechicang>
+            </div>
+            <!-- 当日委托 -->
+            <!-- <div v-if="idx == '1'">
+                <drweituo ref="drweituo"></drweituo>
+            </div> -->
+            <!-- 当日成交 -->
+            <!-- <div v-if="idx == '2'">
+                <drchengjiao ref="drchengjiao"></drchengjiao>
+            </div> -->
+            <!--自选 -->
+            <!-- <div v-if="idx == '3'">
+                <zixuan :action="action" ref="zixuanNew"></zixuan>
+            </div> -->
+        </div>
+		<!-- <swiper ref="swiper" direction="horizontal" :speed="250">
+		</swiper> -->
 	</div>
 </template>
     
@@ -56,7 +54,6 @@ export default {
 			headTabs: ["持仓", "当日委托", "当日成交", "自选"],
 			hselected: 0,
 			pagetype: "0",
-			action: "12310",
 			viewname: "view_buy",
 		};
 	},
@@ -67,7 +64,6 @@ export default {
 	},
 	mounted() {
 		var that = this;
-		this.$TZT.action10077(this);
 		this.pagetype = this.$route.query.type || "0";
 		if (this.pagetype === "0") {
 			this.action = "12310";
@@ -92,10 +88,10 @@ export default {
 	},
 	methods: {
 		updateTab(i) {
-			CiticsNative.NativeCall("reFreshCanBuyAndSellDataByWeb", []);
 			if (i === 0) {
 				this.goTop(i);
-				this.$broadcast("chicangNewData");
+				// this.$broadcast("chicangNewData");
+                this.$refs.chicangnew.chicangNewData()
 			}
 			// if (i === 1) {
 			// 	this.goTop(i);
@@ -165,8 +161,8 @@ export default {
 </script>
     
 <style lang="less" scoped>
-@import "../../../assets/less/variables.less";
-@import "../../../assets/less/mixins.less";
+@import "~sa/less/variables.less";
+@import "~sa/less/mixins.less";
 body {
 	color: red !important;
 }

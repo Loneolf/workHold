@@ -70,6 +70,8 @@ module.exports = {
 			"~": path.resolve(__dirname, "../src"),
 			"~p": path.resolve(__dirname, "../src/page"),
 			"~s": path.resolve(__dirname, "../src/serve"),
+			"~sa": path.resolve(__dirname, "../src/assets"),
+			"@sa": path.resolve(__dirname, "../src/assets"),
 			"~u": path.resolve(__dirname, "../src/util"),
 			"~st": path.resolve(__dirname, "../src/store"),
 			"~l": path.resolve(__dirname, "../src/lib"),

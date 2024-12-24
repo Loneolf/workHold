@@ -1,66 +1,57 @@
 <template>
 	<div>
 		<div v-show="sendError || noData" class="noData">
-			<img src="/newjy/ptjy/images/icon-nodata.png" class="noData-img" />
+			<img src="@sa/images/icon-nodata.png" class="noData-img" />
 			{{ sendError ? "获取数据失败，请手动刷新" : "暂无持仓" }}
 		</div>
 		<div v-show="!noData && !sendError" class="content native-scroll">
-			<div class="classIfication slh_chicangNew">
-				<div class="title">
-					<p
-						v-for="(titleItem, index) in textTitleArray"
-						:key="index"
-						:sort-col="index"
-						v-on:click="changeSort(index, false, true)"
-					>
-						<span v-if="titleItem[0] != '0'"
-							><span :class="'qiangdiaoPx' + index">{{
-								gridTitle[titleItem[0]] | qudiaobaifenghao
-							}}</span
-							>/{{
-								gridTitle[titleItem[1]] | qudiaobaifenghao
-							}}</span
-						>
-						<span v-else :class="'qiangdiaoPx' + index">{{
-							gridTitle[titleItem[1]] | qudiaobaifenghao
-						}}</span>
-						<img
-							class="paixu_tubiao"
-							:id="'paixu_' + index"
-							:src="sortImg[index]"
-						/>
-					</p>
-				</div>
-				<div
-					class="table-cont content infinite-scroll"
-					id="chicanglist_div"
-					:class="onelist"
-				>
-					<chicang
-						:is="isapp"
-						:action="action"
-						:viewname="viewname"
-						ref="chicang"
-						@headtitle="headtitle"
-						@noDataBlock="noDataBlock"
-						@sendErrorF="sendErrorF"
-					></chicang>
-				</div>
-			</div>
+            <div class="title">
+                <p
+                    v-for="(titleItem, index) in textTitleArray"
+                    :key="index"
+                    :sort-col="index"
+                    v-on:click="changeSort(index, false, true)"
+                >
+                    <span v-if="titleItem[0] != '0'"
+                        ><span :class="'qiangdiaoPx' + index">{{
+                            gridTitle[titleItem[0]] | qudiaobaifenghao
+                        }}</span
+                        >/{{
+                            gridTitle[titleItem[1]] | qudiaobaifenghao
+                        }}</span
+                    >
+                    <span v-else :class="'qiangdiaoPx' + index">{{
+                        gridTitle[titleItem[1]] | qudiaobaifenghao
+                    }}</span>
+                    <img
+                        class="paixu_tubiao"
+                        :id="'paixu_' + index"
+                        :src="sortImg[index]"
+                    />
+                </p>
+            </div>
+            <Chicang
+                :is="isapp"
+                :viewname="viewname"
+                ref="chicang"
+                @headtitle="headtitle"
+                @noDataBlock="noDataBlock"
+                @sendErrorF="sendErrorF"
+            ></Chicang>
 		</div>
 	</div>
 </template>
 
 <script>
 import Vue from "vue";
-import chicang from "./chicang.vue";
+import Chicang from "./chicang.vue";
 export default {
-	props: ["url", "action", "viewname"],
+	props: ["url", "viewname"],
 	components: {
-		chicang,
+		Chicang,
 	},
 	data() {
-		var app = this.url || this.$route.query.url || "rzrq/chicang";
+		var app = 'chicang';
 		return {
 			textTitleArray: [],
 			gridTitle: [],
@@ -88,19 +79,9 @@ export default {
 			sendError: false,
 		};
 	},
-	created() {
-		this.textTitleArray = [];
-		this.onelist = "";
-		this.gridTitle = "";
-		var sUrl = this.isapp;
-		Vue.component(this.isapp, function (resolve, reject) {
-			require(["./qTemplates/" + sUrl + ".vue"], resolve);
-		});
-		this.isExample = false;
-		this.isExample = true;
-	},
 	methods: {
 		headtitle: function (obj) {
+            console.log('aaaheadtitle', obj)
 			if (obj.textTitleArray.length == 1) {
 				this.onelist = "onelist";
 			} else {
@@ -114,10 +95,10 @@ export default {
 				img_arr.push(this.list_sort_img["0"]);
 				img_status_arr.push("0");
 			}
-			this.$set("textTitleArray", arr);
-			this.$set("sortImg", img_arr);
-			this.$set("imgStatus", img_status_arr);
-			this.$set("gridTitle", obj.gridTitle);
+			this.textTitleArray = arr;
+			this.sortImg = img_arr;
+			this.imgStatus = img_status_arr;
+			this.gridTitle = obj.gridTitle;
 		},
 		noDataBlock: function (flag) {
 			this.noData = flag;
@@ -224,90 +205,78 @@ export default {
 			}
 		},
 	},
-	events: {
-		chicangNewData: function () {
-			this.chicangNewData();
-		},
-	},
 };
 </script>
 
 <style lang="less" scoped>
-@import "../../assets/less/variables.less";
-@import "../../assets/less/mixins.less";
+@import "~sa/less/variables.less";
+@import "~sa/less/mixins.less";
 .content {
-	-webkit-transform: translateZ(0px);
+	// -webkit-transform: translateZ(0px);
+    position: absolute;
+    width: 100%;
+    top: 60px;
+    bottom: 0;
+    overflow: hidden;
 }
-.classIfication {
-	position: relative;
-	height: 100%;
+p,
+span {
+    font-weight: normal;
+    text-align: center;
+}
 
-	p,
-	span {
-		font-weight: normal;
-		text-align: center;
-	}
+.title {
+    width: 100%;
+    font-size: 0;
+    height: 0.7rem;
+    line-height: 0.7rem;
+    padding: 0 0.3rem;
+    border-bottom: 1px solid #f3f3f3;
+    color: #999;
+    background-color: #ffffff;
+    white-space: nowrap;
+    font-family: PingFangSC-Regular;
+    font-size: 0.26rem;
+    font-weight: 400;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
 
-	.title {
-		width: 100%;
-		font-size: 0;
-		height: 0.7rem;
-		line-height: 0.7rem;
-		padding: 0 0.3rem;
-		border-bottom: 1px solid #f3f3f3;
-		color: #999;
-		background-color: #ffffff;
-		white-space: nowrap;
-		font-family: PingFangSC-Regular;
-		font-size: 0.26rem;
-		font-weight: 400;
-		text-align: right;
-	}
+p {
+    display: inline-block;
+    width: 24%;
+    // font-size: 0.62rem;
+    font-size: 0.26rem;
+    text-align: right;
+    color: #999999;
+    font-family: PingFangSC-Regular;
+    &:first-child {
+        text-align: left;
+    }
+}
 
-	p {
-		display: inline-block;
-		width: 24%;
-		// font-size: 0.62rem;
-		font-size: 0.26rem;
-		text-align: right;
-		color: #999999;
-		font-family: PingFangSC-Regular;
-		&:first-child {
-			text-align: left;
-		}
-	}
+.table-cont {
+    position: absolute;
+    top: 0.7rem;
+    bottom: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
-	.title {
-		position: absolute;
-		width: 100%;
-		top: 0;
-		left: 0;
-		z-index: 100;
-	}
+    .table {
+        position: relative;
+        .hairline(bottom, @color-split);
+    }
+}
 
-	.table-cont {
-		position: absolute;
-		// top: 1.75rem;
-		top: 0.7rem;
-		bottom: 0;
-		/*height: 100%;*/
-		overflow-y: scroll;
-		-webkit-overflow-scrolling: touch;
-
-		.table {
-			position: relative;
-			.hairline(bottom, @color-split);
-		}
-	}
-
-	.onelist {
-		padding-top: 20px;
-	}
-	.paixu_tubiao {
-		width: 0.12rem;
-		height: 0.24rem;
-		margin: 0 0 -0.02rem 0rem;
-	}
+.onelist {
+    padding-top: 20px;
+}
+.paixu_tubiao {
+    width: 0.12rem;
+    height: 0.24rem;
+    margin: 0 0 -0.02rem 0rem;
 }
 .classIfication .title p:nth-child(2) {
 	width: 29% !important;

@@ -38,7 +38,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
+@import "~sa/less/rem.less";
+@import "~sa/less/reset.less";
 .nav {
 	display: flex;
 }

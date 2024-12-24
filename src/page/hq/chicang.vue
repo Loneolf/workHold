@@ -59,7 +59,7 @@ import GRID from "~u/GRID";
 import dealUtil from "~u/dealUtil";
 import service_ptjy from "~s/service_ptjy";
 export default {
-	props: ["action", "viewname"],
+	props: ["viewname"],
 	data() {
 		return {
 			gridData: [],
@@ -109,7 +109,7 @@ export default {
 			);
 		},
 		initData(num) {
-			// this.gridData = [];
+			this.gridData = [];
 			this.listNumber = 0;
 			this.loading = false;
 			this.REREQ = false;
@@ -146,17 +146,12 @@ export default {
 			// this.loadMore();
 		},
 		loadMore() {
-			maidian.reportEventRandom(
-				{ baseVal: 10000, randomVal: 10 },
-				"xtyh_cc_jysy_mmcc"
-			);
 			var that = this;
 			// 如果正在加载，则退出
 			if (that.loading) {
 				return;
 			}
 			that.loading = true;
-			$.showPreloader();
 			var oSendData = {
 				//起始位置
 				StartPos:
@@ -175,7 +170,7 @@ export default {
 					if (data.ERRORNO < 0) {
 						$.hidePreloader();
 						$(".modal").remove();
-						that.$set("gridData", []);
+						that.gridData = []
 						that.$emit("sendErrorF", true);
 						return;
 					}
@@ -202,7 +197,6 @@ export default {
 						that.INDEX.STOCKVALUEINDEX = data.STOCKVALUEINDEX;
 						that.INDEX.YKINDEX = data.YKINDEX;
 						data.GRID0 && data.GRID0.shift();
-						// that.$set('dateArray', oData.dateArray);
 						var obj = {
 							textTitleArray: oData.dateTitle,
 							gridTitle: oData.textTitle,
@@ -299,22 +293,13 @@ export default {
 								_data_arr[data.STOCKCODE_TYPEINDEX];
 							newDataArr.push(chiCangItem);
 						});
-						that.originData = JSON.parse(
-							JSON.stringify(newDataArr)
-						);
+						that.originData = JSON.parse(JSON.stringify(newDataArr));
 						console.log("aaaanewDataArr", newDataArr);
-						newData = newDataArr;
-						that.$set("gridData", newData);
+						that.gridData = newDataArr
 
 						if (!data.GRID0) {
 							data.GRID0 = [];
 						} else {
-							// that.listNumber += 1000;
-							// if(ty == '1'){
-							//     that.listNumber=0;
-							// }else{
-							//     that.listNumber += 1000;
-							// }
 							that.loading = false;
 						}
 
@@ -322,21 +307,11 @@ export default {
 							var _num_index =
 								window.sessionStorage.getItem("_num_index");
 							if (_num_index != null) {
-								that.$parent.changeSort(
-									_num_index,
-									true,
-									false
-								);
+								that.$parent.changeSort(_num_index, true, false);
 							}
 							that.$nextTick(function () {
-								var tableCountScroll =
-									window.sessionStorage.getItem(
-										"TABLECOUNT0"
-									);
-								console.log(
-									"tableCountScroll",
-									tableCountScroll
-								);
+								var tableCountScroll =window.sessionStorage.getItem("TABLECOUNT0");
+								console.log("tableCountScroll", tableCountScroll);
 								if (
 									tableCountScroll &&
 									tableCountScroll != "" &&
@@ -348,42 +323,6 @@ export default {
 								} else {
 									$("#chicanglist_div").scrollTop(0);
 								}
-
-								H5TZT.readLocalMesg(
-									["softversion"],
-									function (oData) {
-										var _appversion =
-											navigator.appVersion.toLocaleLowerCase();
-										if (
-											_appversion.indexOf("android") > 0
-										) {
-											if (
-												oData.SOFTVERSION >= "4.03.037"
-											) {
-												CiticsNative.NativeCall(
-													"setChiCangPriceList",
-													JSON.stringify(
-														that.chiCangChengBenXianShuJu
-													)
-												);
-											} else {
-												H5TZT.reqsofttodo({
-													setChiCangPriceList:
-														JSON.stringify(
-															that.chiCangChengBenXianShuJu
-														),
-												});
-											}
-										} else {
-											H5TZT.reqsofttodo({
-												setChiCangPriceList:
-													JSON.stringify(
-														that.chiCangChengBenXianShuJu
-													),
-											});
-										}
-									}
-								);
 							});
 						});
 					}
@@ -433,27 +372,6 @@ export default {
 				window.sessionStorage.setItem("FUNDTABLE3", 0);
 				window.sessionStorage.setItem("CHEJINGCLAS2", 0);
 				window.sessionStorage.setItem("WEITUOCLAS1", 0);
-				var pagetype = this.$route.query.type || "0";
-				var maidianName =
-					pagetype == "0" ? "jy_ptmy_ctgp_clk" : "jy_ptmc_ctgp_clk";
-				maidian.reportEvent(maidianName, {
-					appkey: "aa347fba81312f23",
-					xwhat: "resource_click",
-					title: pagetype == "0" ? "普通买入页面" : "普通卖出页面",
-					resource_name: "持仓股票",
-					product_market_code: stockcode,
-					product_name: stockName,
-				});
-				if (_this.action) {
-					_this.$TZT.tradeaction(
-						{
-							action: _this.action,
-							stockcode: stockcode,
-							wtaccounttype: wtaccounttype,
-						},
-						_this
-					);
-				}
 			});
 		},
 		setFontSize(grid) {
@@ -602,6 +520,14 @@ export default {
 
 .spanfont4 {
 	font-size: 10px;
+}
+
+.table{
+    position: absolute;
+    top: 36px;
+    bottom: 0;
+    overflow-y: scroll;
+    width: 100%;
 }
 
 .table-list {
