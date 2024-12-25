@@ -1,4 +1,4 @@
-// const path = require("path");
+const path = require("path");
 
 
 module.exports = {
@@ -23,8 +23,8 @@ module.exports = {
 					"postcss-loader",
 					"less-loader"
 				],
-				// type: 'javascript/auto',
-				type: 'css/auto',
+				type: 'javascript/auto',
+				// type: 'css/auto',
 			},
 		]
 	},
@@ -35,15 +35,17 @@ module.exports = {
 		compress: true,
 		// 自定义端口号
 		port: 3000,
-		open: true,
+		open: false,
 		hot: true,
 		historyApiFallback: true,
-		proxy: { // 配置代理
-			"/reqxml": "http://127.0.0.1:80",
-			"/reqreadfile": "http://127.0.0.1:80",
-			"/reqlocal": "http://127.0.0.1:80",
-			"/reqreadmap": "http://127.0.0.1:80",
-			"/reqsavemap": "http://127.0.0.1:80",
-		},
+		proxy: [
+			{ // 配置代理
+				"/reqxml": "http://127.0.0.1:80",
+				"/reqreadfile": "http://127.0.0.1:80",
+				"/reqlocal": "http://127.0.0.1:80",
+				"/reqreadmap": "http://127.0.0.1:80",
+				"/reqsavemap": "http://127.0.0.1:80",
+			}
+		],
 	},
 };

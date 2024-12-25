@@ -19,7 +19,6 @@ module.exports = {
 				"../node_modules/.cache/.eslintcache"
 			),
 		}),
-		
 		new VueLoaderPlugin(),
 	],
 	module: {
@@ -38,31 +37,24 @@ module.exports = {
 				test: /\.(woff|woff2|ttf|otf|eot|txt)$/,
 				type: "asset/resource",
 			},
-			// {
-			// 	test: /\.js$/,
-			// 	include: path.resolve(__dirname, "../src"),
-			// 	loader: "babel-loader",
-			// 	options: {
-			// 		cacheDirectory: true,
-			// 		cacheCompression: false,
-			// 	},
-			// },
+			{
+				test: /\.js$/,
+				include: path.resolve(__dirname, "../src"),
+				loader: "babel-loader",
+				options: {
+					cacheDirectory: true,
+					cacheCompression: false,
+				},
+			},
 			{
 				test: /\.vue$/,
 				loader: 'vue-loader',
 				options: {
 				  // 注意，为了绝大多数功能的可用性，请确保该选项为 `true`
 				  experimentalInlineMatchResource: true,
+				  cacheDirectory: path.resolve(__dirname," ../node_modules/.cache/vue-loader"),
 				},
 			},
-			// {
-			// 	test: /\.vue$/,
-			// 	loader: "vue-loader",
-			// 	options: {
-			// 		// 开启缓存
-			// 		cacheDirectory: path.resolve(__dirname," ../node_modules/.cache/vue-loader"),
-			// 	},
-			// },
 		],
 	},
 	resolve: {

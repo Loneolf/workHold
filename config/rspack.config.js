@@ -6,7 +6,7 @@ const developmentConfig = require("./rspack.config.dev");
 
 module.exports = () => {
   console.log("process.env.NODE_ENV", process.env.NODE_ENV);
-  switch (process.env.NODE_ENV, merge(commonConfig, developmentConfig)) {
+  switch (process.env.NODE_ENV) {
     case "development":
       return merge(commonConfig, developmentConfig);
     case "production":
