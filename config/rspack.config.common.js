@@ -1,14 +1,14 @@
 const path = require("path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
+const rspack = require("@rspack/core");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
-const { DefinePlugin } = require("webpack");
 
 module.exports = {
 	entry: "./src/main.js",
 	plugins: [
-		new HTMLWebpackPlugin({
+		new rspack.HtmlRspackPlugin({
 			template: path.resolve(__dirname, "../public/index.html"), // 以该文件为模板生成HTML
+			inject: "body",
 		}),
 		new ESLintPlugin({
 			context: path.resolve(__dirname, "../src"),
@@ -21,12 +21,6 @@ module.exports = {
 		}),
 		
 		new VueLoaderPlugin(),
-		// cross-env定义的环境变量给打包工具使用
-		// DefinePlugin定义环境变量给源代码使用，从而解决vue3页面警告的问题
-		new DefinePlugin({
-			__VUE_OPTIONS_API__: true,
-			__VUE_PROD_DEVTOOLS__: false,
-		}),
 	],
 	module: {
 		rules: [
@@ -44,23 +38,31 @@ module.exports = {
 				test: /\.(woff|woff2|ttf|otf|eot|txt)$/,
 				type: "asset/resource",
 			},
-			{
-				test: /\.js$/,
-				include: path.resolve(__dirname, "../src"),
-				loader: "babel-loader",
-				options: {
-					cacheDirectory: true,
-					cacheCompression: false,
-				},
-			},
+			// {
+			// 	test: /\.js$/,
+			// 	include: path.resolve(__dirname, "../src"),
+			// 	loader: "babel-loader",
+			// 	options: {
+			// 		cacheDirectory: true,
+			// 		cacheCompression: false,
+			// 	},
+			// },
 			{
 				test: /\.vue$/,
-				loader: "vue-loader",
+				loader: 'vue-loader',
 				options: {
-					// 开启缓存
-					cacheDirectory: path.resolve(__dirname," ../node_modules/.cache/vue-loader"),
+				  // 注意，为了绝大多数功能的可用性，请确保该选项为 `true`
+				  experimentalInlineMatchResource: true,
 				},
 			},
+			// {
+			// 	test: /\.vue$/,
+			// 	loader: "vue-loader",
+			// 	options: {
+			// 		// 开启缓存
+			// 		cacheDirectory: path.resolve(__dirname," ../node_modules/.cache/vue-loader"),
+			// 	},
+			// },
 		],
 	},
 	resolve: {

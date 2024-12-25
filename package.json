@@ -6,8 +6,8 @@
   "scripts": {
     "start": "npm run dev",
     "serve": "npm run dev",
-    "dev": "cross-env NODE_ENV=development webpack serve --config ./config/webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.js"
+    "dev": "cross-env NODE_ENV=development rspack serve --config ./config/rspack.config.js",
+    "build": "cross-env NODE_ENV=production rspack --config ./config/rspack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,8 @@
     "@babel/core": "^7.23.2",
     "@babel/eslint-parser": "^7.23.3",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@rspack/cli": "^1.1.8",
+    "@rspack/core": "^1.1.8",
     "@vue/cli-plugin-babel": "^5.0.8",
     "add-asset-html-webpack-plugin": "^6.0.0",
     "autoprefixer": "^7.2.6",

@@ -2,7 +2,6 @@
 
 
 module.exports = {
-	entry: "./src/main.js",
 	output: {
 		path: undefined,
 		filename: "js/[name].js",
@@ -24,6 +23,8 @@ module.exports = {
 					"postcss-loader",
 					"less-loader"
 				],
+				// type: 'javascript/auto',
+				type: 'css/auto',
 			},
 		]
 	},
